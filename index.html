@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mind the Grounding Gap — Audio demonstrations</title><meta name="description" content="Recorded responses of eight voice agents to a spoken question, each with access to a search tool. Each response is marked for whether the model searched, whether a retrieved passage contained the answer, and whether the spoken answer was correct."><meta property="og:title" content="Mind the Grounding Gap — Audio demonstrations"><meta property="og:description" content="One spoken question, eight voice agents with search. Listen to who searches and who answers correctly."><meta property="og:type" content="website"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"></head><body>
+<header class="site"><div class="wrap"><a class="brand" href="#sh">Mind the Grounding Gap<span>Audio demonstrations</span></a><span class="site-meta">Supplementary audio examples</span></div></header>
+
+<section class="intro wrap">
+ <div>
+  <h1>Mind the Grounding Gap</h1>
+  <p class="subtitle">Recorded responses of eight voice agents to a spoken question, each with access to a search tool.</p>
+  <p class="body">Voice agents can answer a spoken question without consulting the search tool they were given. This page plays the recorded responses of four commercial systems and four open-weight systems: MoshiRAG, and Nemotron before and after fine-tuning (SFT, then SFT&nbsp;+&nbsp;GRPO). Every response is annotated with three marks: whether the model <strong>searched</strong>, whether a <strong>retrieved passage contained the reference answer</strong>, and whether the spoken answer was <strong>correct</strong>.</p>
+  <p class="body selection">This page shows one question from the 132-question evaluation set, with the recorded response of every system. All 132 questions are scored in the paper.</p>
+ </div>
+ <div class="notes">
+  <div class="note"><h4>Reading the marks</h4><ul class="marklist"><li><b>Searched</b> — the model called the search tool at least once.</li><li><b>Retrieved</b> — a retrieved passage contains the expected answer.</li><li><b>Correct</b> — the spoken answer matches the expected answer. Open Details on any response to read its full transcript and searches.</li></ul></div>
+  <div class="note"><h4>About the audio</h4>Waiting time is cut: leading and trailing silence is trimmed and pauses longer than 1.5 s are shortened to under 0.5 s. Speech, repetitions and mistakes are left untouched, so playback length is not response latency.</div>
+ </div>
+</section>
+
+<div class="wrap selectbar"><nav class="tabs" aria-label="Question type"><button id="sh-tab" type="button" data-panel="sh">Single-hop <span id="sh-count"></span></button><button id="mh-tab" type="button" data-panel="mh">Multi-hop <span id="mh-count"></span></button></nav><label class="search"><span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><input id="search" type="search" placeholder="Filter questions" aria-label="Filter questions"></label></div>
+
+<div class="wrap workspace">
+ <aside><p class="aside-label">Questions <span id="count"></span></p><nav id="questionList" aria-label="Questions"></nav></aside>
+ <main>
+  <label class="mobile-select">Question <select id="qselect" aria-label="Select question"></select></label>
+  <div class="qhead"><span id="position" class="meta"></span><div class="navigation"><button id="prev" type="button" aria-label="Previous question">←</button><button id="next" type="button" aria-label="Next question">→</button></div></div>
+  <h2 id="question"></h2>
+  <dl class="qmeta"><div><dt>Expected answer</dt><dd id="reference"></dd></div></dl>
+  <div id="input-player" class="input-strip"></div>
+  <div class="responses-head"><h3>Model responses</h3><div class="controls"><button id="playall" type="button" class="btn">Play all</button><label class="check"><input id="expand" type="checkbox" checked> Transcript excerpts</label><label class="speed">Speed <select id="speed" aria-label="Playback speed"><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label></div></div>
+  <div id="players" class="grid"></div>
+  <section id="detail" class="detail empty" aria-live="polite"></section>
+ </main>
+</div>
+<footer class="site-footer"><div class="wrap"><span>Mind the Grounding Gap</span></div></footer>
+<script src="data.js"></script><script src="app.js"></script></body></html>
